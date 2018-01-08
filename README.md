@@ -5,7 +5,8 @@ Csound is a user-programmable and user-extensible sound processing language and 
 Csound is copyright (c) 1991 Barry Vercoe, John ffitch, and other contributors.
 
 VCVRack v0.5.1, Csound v6.10.0 and Csound modules are compiled and tested on linux Mint 18.3.
---- NOT TESTED ON OTHER PLATFORM ***
+
+*** NOT TESTED ON OTHER PLATFORM ***
 
 Thanks to:
  - Tutorial plugin 
