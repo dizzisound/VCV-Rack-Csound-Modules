@@ -95,7 +95,7 @@ void CsoundReverb::onSampleRateChange() {
 
 void CsoundReverb::reset() {
     //menu initialize: csound restart with modified (or not!) csound script csd
-    onSampleRateChange(); 
+    //onSampleRateChange(); //sometime (?) give csound seg fault 
 }
 
 void CsoundReverb::step() {
