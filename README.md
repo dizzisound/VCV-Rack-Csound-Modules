@@ -17,13 +17,19 @@ Thanks to:
 
 Important:
 
-Csound should be installed in usr/local/ (it is the default in "make install" from sources)
+1) Install the sound and music system Csound, You will found it at www.csound.com.
 
-The cloned directory needs to be named Csound, i.e. 'git clone https://github.com/Djack13/VCV-Rack-Csound-Modules.git Csound'.
+   It should be installed in usr/local/ (it is the default in "make install" from sources).
 
-This Csound directory is to be copied in /Rack/plugins/
+2) Clone from git the vcv-Rack-Csound-Modules 
 
-Then cd to /Rack/plugins/Csound and compile with make
+   The cloned module directory needs to be named Csound, i.e.
+   
+   'git clone https://github.com/Djack13/VCV-Rack-Csound-Modules.git Csound'.
+
+3) Copie the Csound module directory in /Rack/plugins/
+
+4) Then cd to /Rack/plugins/Csound and compile with make
 
 
 
