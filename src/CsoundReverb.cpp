@@ -11,13 +11,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 using namespace std;
-
 
 void MessageCallback(CSOUND* cs, int attr, const char *format, va_list valist)
 {
-  //vprintf(format, valist);    //if commented -> disable csound message on console
+  vprintf(format, valist);    //if commented -> disable csound message on console
   return;
 }
 
@@ -51,7 +49,7 @@ struct CsoundReverb : Module {
     MYFLT *spin, *spout;
 
     int nbSample = 0;
-    int ksmps, result;
+    int ksmps, result, compileError;
     int const nchnls = 2;       // 2 inputs and 2 outputs in csd
 
     float feedback, cutoff; 
@@ -64,7 +62,8 @@ struct CsoundReverb : Module {
         string sr_override = "--sample-rate=" + to_string(engineGetSampleRate());
 
         //compile instance of csound
-        csound->Compile("./plugins/Csound/src/CsoundReverb.csd", (char *) sr_override.c_str(), "--realtime");
+        compileError = csound->Compile("./plugins/Csound/src/CsoundReverb.csd", (char *) sr_override.c_str(), "--realtime");
+	if(compileError) cout << "Csound csd compilation error!" << endl;
 
         spout = csound->GetSpout();                                     //access csound output buffer
         spin  = csound->GetSpin();                                      //access csound input buffer
@@ -102,8 +101,10 @@ void CsoundReverb::reset() {
 void CsoundReverb::step() {
     float out1=0.0, out2=0.0;
 
+    if(compileError) return;            //outputs set to zero
+
     //bypass
-	if(buttonTrigger.process(params[BYPASS_PARAM].value)) bypass = !bypass;
+    if(buttonTrigger.process(params[BYPASS_PARAM].value)) bypass = !bypass;
     lights[BYPASS_LIGHT].value = bypass?10.0:0.0;
 
     //Process
