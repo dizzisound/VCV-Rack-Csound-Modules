@@ -16,6 +16,7 @@ Thanks to:
  - etc...
 
 Important:
+
 Csound should be installed in usr/local/ (it is the default in "make install" from sources)
 
 The cloned directory needs to be named Csound, i.e. 'git clone https://github.com/Djack13/VCV-Rack-Csound-Modules.git Csound'.
