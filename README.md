@@ -14,8 +14,7 @@ Thanks to:
  - ML Modules plugins by Martin Lueders https://github.com/martin-lueders/ML_modules (ML knob...)
  - Csound API at http://csound.com/docs/api/index.html
  - Csound realtime examples by Iain McCurdy at http://iainmccurdy.org/csound.html
- 
- etc...
+ - etc...
 
 Important:
 
