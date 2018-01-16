@@ -122,7 +122,7 @@ void CsoundReverb::step() {
         	};
 
         	if(inputs[CUTOFF_INPUT].active) {
-        		cutoff = clampf(inputs[CUTOFF_INPUT].value*100, 0.0, 10000.0);
+        		cutoff = clampf(inputs[CUTOFF_INPUT].value*0.125, 0.0, 1.0);
         	} else {
         		cutoff = params[CUTOFF_PARAM].value;
         	};
@@ -170,8 +170,8 @@ CsoundReverbWidget::CsoundReverbWidget() {
 	addInput(createInput<PJ301MPort>(Vec(55, 54), module, CsoundReverb::IN2_INPUT));
 	addInput(createInput<PJ301MPort>(Vec(10, 130), module, CsoundReverb::FEEDBACK_INPUT));
 	addInput(createInput<PJ301MPort>(Vec(10, 191), module, CsoundReverb::CUTOFF_INPUT));
-    addParam(createParam<MLKnob>(Vec(45, 123), module, CsoundReverb::FEEDBACK_PARAM, 0.0, 1.0, 0.87));
-    addParam(createParam<MLKnob>(Vec(45, 185), module, CsoundReverb::CUTOFF_PARAM, 0.0, 10000.0, 5000.0));
+    addParam(createParam<MLKnob>(Vec(45, 123), module, CsoundReverb::FEEDBACK_PARAM, 0.0, 1.0, 0.8));
+    addParam(createParam<MLKnob>(Vec(45, 185), module, CsoundReverb::CUTOFF_PARAM, 0.0, 1.0, 0.6));
     addParam(createParam<LEDButton>(Vec(35, 246), module, CsoundReverb::BYPASS_PARAM, 0.0, 10.0, 0.0));
     addChild(createLight<MediumLight<RedLight>>(Vec(40,250), module, CsoundReverb::BYPASS_LIGHT));
 	addOutput(createOutput<PJ301MPort>(Vec(11, 299), module, CsoundReverb::OUT1_OUTPUT));
