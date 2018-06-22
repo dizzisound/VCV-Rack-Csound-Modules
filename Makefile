@@ -1,27 +1,34 @@
+SLUG = Csound
+VERSION = 0.6.0
+
+# If RACK_DIR is not defined when calling the Makefile, default to two levels above
+RACK_DIR ?= ../..
+
+# Default Csound paths
+CSOUND_INCLUDE ?= /usr/local/include/csound
+CSOUND_LIBRARY ?= /usr/local/lib/
+
 # FLAGS will be passed to both the C and C++ compiler
 FLAGS +=
 CFLAGS +=
 CXXFLAGS +=
 
+# Platform detection
+include $(RACK_DIR)/arch.mk
+
 # Careful about linking to libraries, since you can't assume much about the user's environment and library search path.
 # Static libraries are fine.
-LDFLAGS += -L "/usr/local/lib/" -lcsound64
+ifeq ($(ARCH), win)
+	FLAGS += -DUSE_DOUBLE -I$(CSOUND_INCLUDE)
+	CXXFLAGS += -I $(CSOUND_INCLUDE)
+	LDFLAGS +=  -L"$(CSOUND_LIBRARY)" -lcsound64
+else
+	LDFLAGS += -L"$(CSOUND_LIBRARY)" -lcsound64
+endif
 
 # Add .cpp and .c files to the build
 SOURCES = $(wildcard src/*.cpp)
-
+DISTRIBUTABLES += $(wildcard LICENSE*) res  csd
+	
 # Must include the VCV plugin Makefile framework
-include ../../plugin.mk
-
-# Convenience target for including files in the distributable release
-DIST_NAME = Template
-.PHONY: dist
-dist: all
-ifndef VERSION
-	$(error VERSION must be defined when making distributables)
-endif
-	mkdir -p dist/$(DIST_NAME)
-	cp LICENSE* dist/$(DIST_NAME)/
-	cp $(TARGET) dist/$(DIST_NAME)/
-	cp -R res dist/$(DIST_NAME)/
-	cd dist && zip -5 -r $(DIST_NAME)-$(VERSION)-$(ARCH).zip $(DIST_NAME)
+include $(RACK_DIR)/plugin.mk

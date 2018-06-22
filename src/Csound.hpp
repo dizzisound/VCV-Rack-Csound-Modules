@@ -1,17 +1,16 @@
 #include "rack.hpp"
 
+#if defined _WIN32 || defined __CYGWIN__
+	#ifdef __GNUC__
+		#define DLL_EXPORT __attribute__ ((dllexport))
+	#else
+		#define DLL_EXPORT __declspec(dllexport)
+	#endif
+#endif
+
 using namespace rack;
 
 extern Plugin *plugin;
+DLL_EXPORT void init(rack::Plugin *p);
 
-struct MLKnob : RoundKnob {
-	MLKnob() {
-		setSVG(SVG::load(assetPlugin(plugin,"res/Knob.svg")));
-		box.size = Vec(36, 36);
-	}
-};
-
-struct CsoundReverbWidget : ModuleWidget {
-	CsoundReverbWidget();
-};
-
+extern Model *modelCsoundReverb;
