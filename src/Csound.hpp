@@ -11,6 +11,11 @@
 using namespace rack;
 
 extern Plugin *plugin;
-DLL_EXPORT void init(rack::Plugin *p);
+
+#if defined _WIN32 || defined CYGWIN
+	DLL_EXPORT void init(rack::Plugin *p);
+#else //for linux
+	void init(rack::Plugin *p);
+#endif
 
 extern Model *modelCsoundReverb;
