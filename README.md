@@ -1,3 +1,12 @@
+**_Update: closing repo_**
+
+The original repo, the one this was forked from, was deprecated and moved to a [new updated repo](https://github.com/Djack13/VCV_Csound), featuring new modules and API compliance with [VCVRack](https://github.com/VCVRack/Rack) 0.6 host.
+
+In accordance with the foregoing, I'm going to archive this repo and moving to a new forked one: https://github.com/dizzisound/VCV_Csound
+
+The goal is to mantain a sync with the original sources, adding only the minimum support for letting the plugin build and load on the Windows platform. Doing this in my spare time, so help from devs and Community is greatly appreciated.
+
+
 # VCV-Rack-Csound-Modules
 VCV Rack modules with Csound engine
 
